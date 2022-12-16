@@ -1,13 +1,16 @@
 
 
-call insert_transaction('2022-10-04',1,'burhan', 'can','qwer', 'sale');
+call insert_transaction(1,'canbay', 'can','qwer', 'sale');
  
 
-call insert_item('vyk', 'cpu', 'snc', 'bullet', 'x0x1x2x3c21cft2yf1f13', 'sncy', 'on-stock') 
+call insert_item('vyks', 'cpue', 'sncv', 'bullet', 'sg4ali5us3uhs0jc1hj2kDSD', 'sncy', 'on-stock') 
 
 
-call insert_character('crazy', 'osman', 'femail', 'middle weight', 'tall', 'without hair', 'without beard',
+call insert_character('crazy1', 'osman', 'femail', 'middle weight', 'tall', 'without hair', 'without beard',
 					 'without moustache'); 
+
+call insert_release(100, 'qwerhj');	
+
 
 call insert_beard('mixed');	
 
@@ -15,7 +18,7 @@ call insert_beard('mixed');
 call insert_category('paint');
 
 
-call insert_contract('sg4ali5us3uhs0jc1hj2k');
+call insert_contract('sg4ali5us3uhs0jc1hj2kDSD');
 
 
 call insert_gender('lesbian');

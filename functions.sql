@@ -6,7 +6,7 @@ DECLARE
 	user_id INTEGER;
 BEGIN
 	user_id:=(SELECT id FROM "user" WHERE user_name=u_name);
-RETURN user_id;	
+RETURN user_id;		
 END $$;
 
 

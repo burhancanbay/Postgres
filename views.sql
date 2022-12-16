@@ -1,15 +1,123 @@
-CREATE VIEW asset_feature
+
+
+CREATE OR REPLACE VIEW weight_feature
+AS
+  SELECT weight_option
+  FROM weight
+  ORDER BY weight_option;
+  
+  
+
+CREATE OR REPLACE VIEW user_feature2
+AS
+  SELECT user_address
+  FROM "user"
+  ORDER BY user_address;
+
+
+
+CREATE OR REPLACE VIEW user_feature1
+AS
+  SELECT user_name
+  FROM "user"
+  ORDER BY user_name;
+  
+
+CREATE OR REPLACE VIEW transaction_type_feature
+AS
+  SELECT transaction_name
+  FROM transaction_type
+  ORDER BY transaction_name;
+  
+
+
+CREATE OR REPLACE VIEW status_feature
+AS
+  SELECT status_name
+  FROM status
+  ORDER BY status_name;
+
+
+
+CREATE OR REPLACE VIEW moustache_feature
+AS
+  SELECT moustache_option
+  FROM moustache
+  ORDER BY moustache_option;
+
+
+
+CREATE OR REPLACE VIEW length_feature
+AS
+  SELECT length_option
+  FROM "length"
+  ORDER BY length_option;
+
+
+
+CREATE OR REPLACE VIEW hair_feature
+AS
+  SELECT hair_option
+  FROM hair
+  ORDER BY hair_option;
+
+
+
+CREATE OR REPLACE VIEW gender_feature
+AS
+  SELECT gender_option
+  FROM gender
+  ORDER BY gender_option;
+
+
+
+CREATE OR REPLACE VIEW contract_feature
+AS
+  SELECT contract_address
+  FROM contract
+  ORDER BY contract_address;
+
+
+
+CREATE OR REPLACE VIEW category_feature
+AS
+  SELECT category_name
+  FROM category
+  ORDER BY category_name;
+
+
+
+CREATE OR REPLACE VIEW beard_feature
+AS
+  SELECT beard_option
+  FROM beard
+  ORDER BY beard_option;
+ 
+
+CREATE OR REPLACE VIEW release_feature
+AS
+  SELECT i.item_name,
+         r.release_qty,
+	     r.release_date
+   FROM "release" r
+    LEFT JOIN item i ON r.item_id = i.id
+  ORDER BY r.release_date;
+
+
+CREATE OR REPLACE VIEW asset_feature
 AS
   SELECT u.user_name,
-    i.item_name,
-    ass.asset_qty
+         i.item_name,
+         ass.asset_qty
    FROM asset ass
      LEFT JOIN "user" u ON ass.user_id = u.id
      LEFT JOIN item i ON ass.item_id = i.id
-  ORDER BY u.user_name;
+   WHERE ass.asset_qty <> 0
+   ORDER BY u.user_name;
+   
   
   
-CREATE VIEW character_feature
+CREATE OR REPLACE VIEW character_feature
 AS
    SELECT ch.character_name,
     u.user_name,
@@ -29,7 +137,7 @@ AS
      LEFT JOIN moustache ms ON ch.moustache_id = ms.id;
 	 
 	 
-CREATE VIEW item_feature
+CREATE OR REPLACE VIEW item_feature
 AS
 	  SELECT i.id,
     i.item_code,
@@ -47,7 +155,7 @@ AS
   ORDER BY i.id;
   
   
-CREATE VIEW transaction_feature
+CREATE OR REPLACE VIEW transaction_feature
 AS
   SELECT tr.transaction_date,
     tr.transaction_qty,
