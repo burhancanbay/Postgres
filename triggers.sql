@@ -115,8 +115,8 @@ AS
 $$
 BEGIN
 	IF (SELECT COUNT(*) FROM asset 
-       WHERE user_id = NEW.user_from_id AND item_id = NEW.item_id) = 0 THEN
-	   INSERT INTO asset (asset_qty, user_id, item_id) VALUES (0, NEW.user_from_id, NEW.item_id);			
+       WHERE user_id = NEW.from_user_id AND item_id = NEW.item_id) = 0 THEN
+	   INSERT INTO asset (asset_qty, user_id, item_id) VALUES (0, NEW.from_user_id, NEW.item_id);			
     END IF;
 RETURN NEW;	
 END;
@@ -129,8 +129,8 @@ AS
 $$
 BEGIN
     IF (SELECT COUNT(*) FROM asset 
-       WHERE user_id = NEW.user_to_id AND item_id = NEW.item_id) = 0 THEN
-	   INSERT INTO asset (asset_qty, user_id, item_id) VALUES (0, NEW.user_to_id, NEW.item_id);			
+       WHERE user_id = NEW.to_user_id AND item_id = NEW.item_id) = 0 THEN
+	   INSERT INTO asset (asset_qty, user_id, item_id) VALUES (0, NEW.to_user_id, NEW.item_id);			
     END IF;
 RETURN NEW;	
 END;
@@ -159,7 +159,7 @@ $$
 BEGIN
 	UPDATE asset
     SET asset_qty = asset_qty - NEW.transaction_qty
-    WHERE user_id = NEW.user_from_id AND item_id = NEW.item_id;
+    WHERE user_id = NEW.from_user_id AND item_id = NEW.item_id;
 RETURN NEW;	
 END;
 $$
@@ -173,7 +173,7 @@ $$
 BEGIN
 	UPDATE asset
     SET asset_qty = asset_qty + NEW.transaction_qty
-    WHERE user_id = NEW.user_to_id AND item_id = NEW.item_id;
+    WHERE user_id = NEW.to_user_id AND item_id = NEW.item_id;
 RETURN NEW;	
 END;
 $$
@@ -199,7 +199,7 @@ $$
 BEGIN
 	UPDATE asset
     SET asset_qty = asset_qty + OLD.transaction_qty
-    WHERE user_id = OLD.user_from_id AND item_id = OLD.item_id;
+    WHERE user_id = OLD.from_user_id AND item_id = OLD.item_id;
 RETURN NEW;	
 END;
 $$
@@ -212,7 +212,7 @@ $$
 BEGIN
 	UPDATE asset
     SET asset_qty = asset_qty - OLD.transaction_qty
-    WHERE user_id = OLD.user_to_id AND item_id = OLD.item_id;
+    WHERE user_id = OLD.to_user_id AND item_id = OLD.item_id;
 RETURN NEW;	
 END;
 $$
@@ -239,7 +239,7 @@ $$
 BEGIN
 	UPDATE asset
     SET asset_qty = asset_qty - NEW.transaction_qty
-    WHERE user_id = NEW.user_from_id AND item_id = NEW.item_id;
+    WHERE user_id = NEW.from_user_id AND item_id = NEW.item_id;
 RETURN NEW;	
 END;
 $$
@@ -252,7 +252,7 @@ $$
 BEGIN
     UPDATE asset
     SET asset_qty = asset_qty + NEW.transaction_qty
-    WHERE user_id = NEW.user_to_id AND item_id = NEW.item_id;
+    WHERE user_id = NEW.to_user_id AND item_id = NEW.item_id;
 RETURN NEW;	
 END;
 $$
@@ -278,7 +278,7 @@ $$
 BEGIN
     UPDATE asset
     SET asset_qty = asset_qty + OLD.transaction_qty
-    WHERE user_id = OLD.user_from_id AND item_id = OLD.item_id;
+    WHERE user_id = OLD.from_user_id AND item_id = OLD.item_id;
 RETURN NEW;
 END;
 $$
@@ -291,7 +291,7 @@ $$
 BEGIN
 	UPDATE asset
     SET asset_qty = asset_qty - OLD.transaction_qty
-    WHERE user_id = OLD.user_to_id AND item_id = OLD.item_id;
+    WHERE user_id = OLD.to_user_id AND item_id = OLD.item_id;
 RETURN NEW;
 END;
 $$
