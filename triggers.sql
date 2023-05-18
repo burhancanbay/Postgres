@@ -123,6 +123,13 @@ END;
 $$
 LANGUAGE plpgsql;
 
+CREATE TRIGGER transaction_before_insert1
+BEFORE INSERT
+ON "transaction"
+FOR EACH ROW
+EXECUTE PROCEDURE transaction_before_insert1();
+
+
 CREATE OR REPLACE FUNCTION transaction_before_insert2()
 RETURNS TRIGGER
 AS
@@ -138,11 +145,7 @@ $$
 LANGUAGE plpgsql;
 
 
-CREATE TRIGGER transaction_before_insert1
-BEFORE INSERT
-ON "transaction"
-FOR EACH ROW
-EXECUTE PROCEDURE transaction_before_insert1();
+
 
 CREATE TRIGGER transaction_before_insert2
 BEFORE INSERT
@@ -165,6 +168,12 @@ END;
 $$
 LANGUAGE plpgsql;
 
+CREATE TRIGGER transaction_after_insert1
+AFTER INSERT
+ON "transaction"
+FOR EACH ROW
+EXECUTE PROCEDURE transaction_after_insert1();
+
 
 CREATE OR REPLACE FUNCTION transaction_after_insert2() 
 RETURNS TRIGGER
@@ -179,11 +188,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER transaction_after_insert1
-AFTER INSERT
-ON "transaction"
-FOR EACH ROW
-EXECUTE PROCEDURE transaction_after_insert1();
+
 
 CREATE TRIGGER transaction_after_insert2
 AFTER INSERT
@@ -205,6 +210,13 @@ END;
 $$
 LANGUAGE plpgsql;
 
+CREATE TRIGGER transaction_before_update1
+BEFORE UPDATE
+ON "transaction"
+FOR EACH ROW
+EXECUTE PROCEDURE transaction_before_update1();
+
+
 CREATE OR REPLACE FUNCTION transaction_before_update2()
 RETURNS TRIGGER
 AS
@@ -217,12 +229,6 @@ RETURN NEW;
 END;
 $$
 LANGUAGE plpgsql;
-
-CREATE TRIGGER transaction_before_update1
-BEFORE UPDATE
-ON "transaction"
-FOR EACH ROW
-EXECUTE PROCEDURE transaction_before_update1();
 
 CREATE TRIGGER transaction_before_update2
 BEFORE UPDATE
@@ -245,6 +251,13 @@ END;
 $$
 LANGUAGE plpgsql;
 
+CREATE TRIGGER transaction_after_update1
+AFTER UPDATE
+ON "transaction"
+FOR EACH ROW
+EXECUTE PROCEDURE transaction_after_update1();
+
+
 CREATE OR REPLACE FUNCTION transaction_after_update2()
 RETURNS TRIGGER
 AS
@@ -258,17 +271,12 @@ END;
 $$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER transaction_after_update1
-AFTER UPDATE
-ON "transaction"
-FOR EACH ROW
-EXECUTE PROCEDURE transaction_after_update1();
-
 CREATE TRIGGER transaction_after_update2
 AFTER UPDATE
 ON "transaction"
 FOR EACH ROW
 EXECUTE PROCEDURE transaction_after_update2();
+
 
 
 CREATE OR REPLACE FUNCTION transaction_after_delete1()
@@ -284,6 +292,14 @@ END;
 $$
 LANGUAGE plpgsql;
 
+CREATE TRIGGER transaction_after_delete1
+AFTER DELETE
+ON "transaction"
+FOR EACH ROW
+EXECUTE PROCEDURE transaction_after_delete1();
+
+
+
 CREATE OR REPLACE FUNCTION transaction_after_delete2()
 RETURNS TRIGGER
 AS
@@ -296,12 +312,6 @@ RETURN NEW;
 END;
 $$
 LANGUAGE plpgsql;
-
-CREATE TRIGGER transaction_after_delete1
-AFTER DELETE
-ON "transaction"
-FOR EACH ROW
-EXECUTE PROCEDURE transaction_after_delete1();
 
 CREATE TRIGGER transaction_after_delete2
 AFTER DELETE

@@ -6,7 +6,7 @@ AS ct(item_id int,"user_id=1" int,"user_id=2" int,"user_id=3" int,"user_id=4" in
 
 
 SELECT *
-FROM crosstab('select  item_name,user_name, asset_quantity from asset_view order by item_name,user_name',$$VALtUES ('system'::text), ('burhan'),('osman'),('can')$$)
+FROM crosstab('select  item_name,user_name, asset_quantity from asset_view order by item_name,user_name',$$VALUES ('system'::text), ('burhan'),('osman'),('can')$$)
 AS ct(item_name text, "system" text,"burhan" text,"osman" text,"can" text);
 
 
